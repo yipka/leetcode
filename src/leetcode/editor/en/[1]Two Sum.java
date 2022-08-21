@@ -47,14 +47,17 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+import java.util.*;
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        /*brute force solution: traverse*/
-        for(int i = 0;i < nums.length - 1;i++){
-            for(int j = i + 1; j < nums.length; j++){
-                if((nums[i] + nums[j] == target)){
-                    return new int[] { i, j };
-                }
+        HashMap<Integer, Integer> diffMap = new HashMap<Integer, Integer>();
+        for(int i = 0; i < nums.length; i++){
+            if(diffMap.containsKey( nums[i] )){
+                return new int[] { diffMap.get( nums[i] ), i};
+            }else {
+
+                /*add  list_index as map_value and target-value as map_index*/
+                diffMap.put(target - nums[i], i);
             }
         }
 
