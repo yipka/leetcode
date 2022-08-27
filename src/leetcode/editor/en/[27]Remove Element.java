@@ -72,19 +72,19 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int removeElement(int[] nums, int val) {
-        /*brute force O(N^2)*/
-        int size = nums.length;
-        for(int i=0; i < size; i++){
-            if (nums[i] == val){
-                /*move all afterwards node ahead one slot*/
-                for (int j = i + 1; j < size; j++){
-                    nums[j - 1] = nums[j];
-                }
-                i--;
-                size--;
+        /*fast-slow pointers*/
+        int len = nums.length;
+        int slow_index = 0;
+
+        for(int fast_index = 0; fast_index < len; fast_index++){
+            if( val != nums[fast_index]){
+                nums[slow_index] = nums[fast_index];
+                slow_index++;
             }
         }
-        return size;
+
+        return slow_index;
+
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
